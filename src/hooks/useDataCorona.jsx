@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
 
-const useDataCorona = ()=>{
+const useDataCorona = (search=null)=>{
 
-    const [dataCorona, setDataCorona] = useState([]) 
+    const [dataCorona, setDataCorona] = useState([])
+
 
     useEffect(()=>{
         const fetchData = async()=>{
-            const dat = await axios.get('https://covid19-brazil-api.now.sh/api/report/v1')
-            setDataCorona(dat.data.data)
+            let api = 'https://covid19-brazil-api.now.sh/api/report/v1'
+            
+            if(search){
+                api += `/brazil/uf/${search}`
+            }
+            
+            const dat = await axios.get(api)
+            setDataCorona(search? dat.data : dat.data.data)
         }
-
         fetchData()
-    }, [])
+    }, [search])
     return dataCorona
 }
 

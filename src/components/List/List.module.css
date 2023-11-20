@@ -22,6 +22,29 @@
     background-color: rgb(43, 43, 43);
     position: fixed;
     border-radius: 0px 0px 10px 0px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container_search{
+    margin-right: 20px;
+}
+
+
+.container_search input{
+    border-radius: 5px;
+    height: 25px;
+    border: none;
+    background-color: #888;
+    color: white;
+    padding-left: 10px;
+}
+
+
+.container_search input::placeholder{
+    color: white;
 }
 
 h2{

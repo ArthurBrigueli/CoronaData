@@ -8,14 +8,10 @@ import PopList from "../PopList/PopList";
 
 const List = ()=>{
 
-
-    const data = useDataCorona()
-    const keys = data.length > 0 ? Object.keys(data[0]) : [];
+    const [search, setSearch] = useState(null)
     const [dataClick, setDataClick] = useState([])
-
     const [close, setClose] = useState(false);
-
-    
+    const data = useDataCorona(search)
 
     const handleClick = async(key)=>{
         const a = await axios.get(`https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/${key}`)
@@ -27,6 +23,10 @@ const List = ()=>{
         setClose(false)
     }
 
+    const handleSearch = (e)=>{
+        setSearch(e)
+    }
+    
 
     return(
         <div className={styles.container}>
@@ -35,31 +35,58 @@ const List = ()=>{
             )}
             <div className={styles.containerh2}>
                 <h2>Atualização Corona Virus</h2>
+                <div className={styles.container_search}>
+                    <input type="search" name="" id="" placeholder="Pesquise por UF" onChange={(e)=>handleSearch(e.target.value)}/>
+                </div>
             </div>
             <div className={styles.container_list}>
-                {data.map((item, index) =>(
-                    <div key={index} className={styles.container_item} onClick={(e)=>handleClick(item.uf)}>
-                        <div>
-                            <span>{item.uf}</span>
+                {search === null ?(
+                    data.map((item, index) =>(
+                        <div key={index} className={styles.container_item} onClick={(e)=>handleClick(item.uf)}>
+                            <div>
+                                <span>{item.uf}</span>
+                            </div>
+                            <div className={styles.container_info}>
+                                <span>Casos</span>
+                                <span>{item.cases}</span>
+                            </div>
+                            <div className={styles.container_info}>
+                                <span>Mortes</span>
+                                <span>{item.deaths}</span>
+                            </div>
+                            <div className={styles.container_info}>
+                                <span>Suspeitos</span>
+                                <span>{item.suspects}</span>
+                            </div>
+                            <div className={styles.container_info}>
+                                <span>Curados</span>
+                                <span>{item.refuses}</span>
+                            </div>
                         </div>
-                        <div className={styles.container_info}>
-                            <span>Casos</span>
-                            <span>{item.cases}</span>
+                    ))
+                ):(
+                    <div className={styles.container_item}>
+                            <div>
+                                <span>{data.uf}</span>
+                            </div>
+                            <div className={styles.container_info}>
+                                <span>Casos</span>
+                                <span>{data.cases}</span>
+                            </div>
+                            <div className={styles.container_info}>
+                                <span>Mortes</span>
+                                <span>{data.deaths}</span>
+                            </div>
+                            <div className={styles.container_info}>
+                                <span>Suspeitos</span>
+                                <span>{data.suspects}</span>
+                            </div>
+                            <div className={styles.container_info}>
+                                <span>Curados</span>
+                                <span>{data.refuses}</span>
+                            </div>
                         </div>
-                        <div className={styles.container_info}>
-                            <span>Mortes</span>
-                            <span>{item.deaths}</span>
-                        </div>
-                        <div className={styles.container_info}>
-                            <span>Suspeitos</span>
-                            <span>{item.suspects}</span>
-                        </div>
-                        <div className={styles.container_info}>
-                            <span>Curados</span>
-                            <span>{item.refuses}</span>
-                        </div>
-                    </div>
-                ))}
+                )}
             </div>
         </div>
     )
