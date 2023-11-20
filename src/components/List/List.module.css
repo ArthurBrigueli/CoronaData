@@ -6,16 +6,16 @@
     background-color: rgb(43, 43, 43);
     height: 400px;
     width: 50%;
-    overflow-x: auto;
     font-weight: bold;
     border-radius: 5px;
     position: relative;
 }
 
 .container_list{
-    margin-top: 40px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
+    overflow-x: auto;
 }
 
 .containerh2{

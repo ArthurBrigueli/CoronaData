@@ -30,6 +30,9 @@ const List = ()=>{
 
     return(
         <div className={styles.container}>
+            {close && (
+                <PopList data={dataClick.data} close={handleClose}/>
+            )}
             <div className={styles.containerh2}>
                 <h2>Atualização Corona Virus</h2>
             </div>
@@ -57,10 +60,6 @@ const List = ()=>{
                         </div>
                     </div>
                 ))}
-
-                {close && (
-                    <PopList data={dataClick.data} close={handleClose}/>
-                )}
             </div>
         </div>
     )
