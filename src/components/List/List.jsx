@@ -3,6 +3,7 @@ import useDataCorona from "../../hooks/useDataCorona"
 import styles from './List.module.css'
 import axios from 'axios'
 import PopList from "../PopList/PopList";
+import InputSearch from "../InputSearch/InputSearch";
 
 
 
@@ -41,7 +42,7 @@ const List = ()=>{
             <div className={styles.containerh2}>
                 <h2>Atualização Corona Virus</h2>
                 <div className={styles.container_search}>
-                    <input type="search" name="" id="" placeholder="Pesquise por UF" onChange={(e)=>handleSearch(e.target.value)}/>
+                    <InputSearch onChange={handleSearch}/>
                 </div>
             </div>
             <div className={styles.container_list}>
