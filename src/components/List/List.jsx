@@ -24,7 +24,12 @@ const List = ()=>{
     }
 
     const handleSearch = (e)=>{
-        setSearch(e)
+        if(e === ""){
+            setSearch(null)
+        }else{
+            setSearch(e)
+        }
+        
     }
     
 
@@ -65,27 +70,29 @@ const List = ()=>{
                         </div>
                     ))
                 ):(
-                    <div className={styles.container_item}>
+                    data.map((item,index)=>(
+                        <div key={index} className={styles.container_item} onClick={(e)=>handleClick(item.uf)}>
                             <div>
-                                <span>{data.uf}</span>
+                                <span>{item.uf}</span>
                             </div>
                             <div className={styles.container_info}>
                                 <span>Casos</span>
-                                <span>{data.cases}</span>
+                                <span>{item.cases}</span>
                             </div>
                             <div className={styles.container_info}>
                                 <span>Mortes</span>
-                                <span>{data.deaths}</span>
+                                <span>{item.deaths}</span>
                             </div>
                             <div className={styles.container_info}>
                                 <span>Suspeitos</span>
-                                <span>{data.suspects}</span>
+                                <span>{item.suspects}</span>
                             </div>
                             <div className={styles.container_info}>
                                 <span>Curados</span>
-                                <span>{data.refuses}</span>
+                                <span>{item.refuses}</span>
                             </div>
                         </div>
+                    ))
                 )}
             </div>
         </div>
