@@ -4,7 +4,7 @@ import axios from 'axios'
 const useDataCorona = (search)=>{
 
     const [dataCorona, setDataCorona] = useState([])
-
+    const[loading, setLoading] = useState(false)
 
     useEffect(()=>{
         const fetchData = async()=>{
@@ -16,8 +16,15 @@ const useDataCorona = (search)=>{
                     api = `https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/${search}`
                 }
                 
-                let dat = await axios.get(api)
-                setDataCorona(search? [dat.data] : dat.data.data)
+                setLoading(true)
+                await axios.get(api).then(response => {
+                    if(response.data && response.data.error){
+                        return
+                    }
+                    setDataCorona(search? [response.data] : response.data.data)
+                })
+                
+                setLoading(false)
             }catch(error){
                 console.log(error)
             }
@@ -25,7 +32,7 @@ const useDataCorona = (search)=>{
         }
         fetchData()
     }, [search])
-    return dataCorona
+    return [dataCorona, loading]
 }
 
 

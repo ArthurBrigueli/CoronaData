@@ -11,7 +11,7 @@ const List = ()=>{
     const [search, setSearch] = useState(null)
     const [dataClick, setDataClick] = useState([])
     const [close, setClose] = useState(false);
-    const data = useDataCorona(search)
+    const [data, loading] = useDataCorona(search)
 
     const handleClick = async(key)=>{
         const a = await axios.get(`https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/${key}`)
@@ -45,6 +45,11 @@ const List = ()=>{
                 </div>
             </div>
             <div className={styles.container_list}>
+                {loading && (
+                    <div className={styles.container_item}>
+                        <p>Loading...</p>
+                    </div>
+                )}
                 {search === null ?(
                     data.map((item, index) =>(
                         <div key={index} className={styles.container_item} onClick={(e)=>handleClick(item.uf)}>
