@@ -48,8 +48,8 @@ const List = ()=>{
                 {search === null ?(
                     data.map((item, index) =>(
                         <div key={index} className={styles.container_item} onClick={(e)=>handleClick(item.uf)}>
-                            <div>
-                                <span>{item.uf}</span>
+                            <div className={styles.container_state}>
+                                <span>{item.state}</span>
                             </div>
                             <div className={styles.container_info}>
                                 <span>Casos</span>
@@ -72,8 +72,8 @@ const List = ()=>{
                 ):(
                     data.map((item,index)=>(
                         <div key={index} className={styles.container_item} onClick={(e)=>handleClick(item.uf)}>
-                            <div>
-                                <span>{item.uf}</span>
+                            <div className={styles.container_state}>
+                                <span>{item.state}</span>
                             </div>
                             <div className={styles.container_info}>
                                 <span>Casos</span>

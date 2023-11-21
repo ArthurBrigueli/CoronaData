@@ -64,6 +64,13 @@ h2{
 }
 
 
+.container_state{
+    display: inline-block;
+    width: 15%;
+}
+
+
+
 .container_item:hover{
     background-color: rgb(192, 255, 140);
     cursor: pointer;
