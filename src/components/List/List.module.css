@@ -5,7 +5,7 @@
     border: 1px solid rgb(122, 122, 122);
     background-color: rgb(43, 43, 43);
     height: 400px;
-    width: 50%;
+    width: 30%;
     font-weight: bold;
     border-radius: 5px;
     position: relative;
@@ -22,7 +22,7 @@
     background-color: rgb(43, 43, 43);
     position: fixed;
     border-radius: 0px 0px 10px 0px;
-    width: 50%;
+    width: 30%;
     display: flex;
     align-items: center;
     justify-content: space-between;
